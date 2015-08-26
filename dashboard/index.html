@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+	<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+	<title>Dashboard - Kadamba</title>
+</head>
+<body>
+	<div class="container dashmain">
+		<div class="jumbotron">
+			<h2>Kadamba App Dashboard</h2>
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="active usert"><a href="#">Users</a></li>
+				<li role="presentation" class="bust"><a href="#">Buses</a></li>
+				<li role="presentation" class="settingt"><a href="#">Settings</a></li>
+			</ul>
+			<div class="panel panel-default" id="one">
+				<form method="POST" action="insertusers.php" class="panel-body jumbotron users">
+					<input type="text" class="form-control" name="uname" placeholder="Username">
+					<input type="password" class="form-control" id="pass" onchange="chk()" onkeyup="chk()" onkeydown="chk()" name="pword" placeholder="Password">
+					<input type="password" onchange="chk()" onkeyup="chk()" onkeydown="chk()" class="form-control" id="cpass" name="pword" placeholder="Confirm Password">
+					<input type="submit" id="submit" value="Create User" class="form-control btn btn-success disabled">
+				</form>
+			</div>
+			<div class="panel panel-default" id="two">
+				<form method="POST" action="insertbus.php" class="panel-body jumbotron users">
+					<select name="origin" id="origin" class="form-control">
+						<option value="margao">Margao</option>
+						<option value="panjim">Panjim</option>
+						<option value="vasco">Vasco</option>
+						<option value="ponda">Ponda</option>
+					</select>
+					<select name="destination" id="destination" class="form-control">
+						<option value="margao">Margao</option>
+						<option value="panjim">Panjim</option>
+						<option value="vasco">Vasco</option>
+						<option value="ponda">Ponda</option>
+					</select>
+					<input type="time" class="form-control">
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
+</body>
+</html>
