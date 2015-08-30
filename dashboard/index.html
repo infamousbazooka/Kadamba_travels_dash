@@ -18,15 +18,38 @@
 				<li role="presentation" class="settingt"><a href="#">Settings</a></li>
 			</ul>
 			<div class="panel panel-default" id="one">
-				<form method="POST" action="insertusers.php" class="panel-body jumbotron users">
-					<input type="text" class="form-control" name="uname" placeholder="Username">
+				<div class="panel-body jumbotron users">
+					<input type="text" id="uname" class="form-control" name="uname" placeholder="Username">
 					<input type="password" class="form-control" id="pass" onchange="chk()" onkeyup="chk()" onkeydown="chk()" name="pword" placeholder="Password">
 					<input type="password" onchange="chk()" onkeyup="chk()" onkeydown="chk()" class="form-control" id="cpass" name="pword" placeholder="Confirm Password">
-					<input type="submit" id="submit" value="Create User" class="form-control btn btn-success disabled">
-				</form>
+					<button id="submit" class="form-control btn btn-success disabled">Create User</button>
+					<input type="reset" onclick="resettxt()" class="form-control btn btn-info" value="Reset">
+				</div>
+				<?php
+				$servername = "localhost";
+				$username = "username";
+				$password = "password";
+				$dbname = "myDB";
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				if($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+				}
+				$sql = "SELECT id, firstname, lastname FROM MyGuests";
+				$result = $conn->query($sql);
+				if($result->num_rows > 0) {
+					echo "<table><tr><th>ID</th><th>Name</th></tr>";
+					while($row = $result->fetch_assoc()) {
+						echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." ".$row["lastname"]."</td></tr>";
+					}
+					echo "</table>";
+				} else {
+				    echo "0 results";
+				}
+				$conn->close();
+				?>
 			</div>
 			<div class="panel panel-default" id="two">
-				<form method="POST" action="insertbus.php" class="panel-body jumbotron users">
+				<form method="POST" action="../insertbus.php" class="panel-body jumbotron users">
 					<select name="origin" id="origin" class="form-control">
 						<option value="margao">Margao</option>
 						<option value="panjim">Panjim</option>
@@ -46,6 +69,7 @@
 	</div>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="../lib/notify.min.js"></script>
 	<script src="../js/main.js"></script>
 </body>
 </html>
